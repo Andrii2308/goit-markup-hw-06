@@ -226,19 +226,24 @@ max-width: 320px;
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
   background-color: #fff;
   visibility: visible; /* Видимий елемент */
   z-index: 1000;
-  opacity: 0; /* Повна видимість */
-  pointer-events: none; /* Вимікаємо взаємодію з елементом */
+  opacity: 0; /*0 Повна видимість */
+  pointer-events: none; /*none Вимікаємо взаємодію з елементом */
   padding: 0 16px;
   margin: 0;
   align-items: start;
   transform: translate(-50%, -50%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.menu {
+    display: flex;
+  flex-direction: column;
+  height: 100%; 
 }
 
 /* Відкрите меню */
@@ -275,8 +280,13 @@ max-width: 320px;
 
 /* Список меню */
 .menu-nav {
-  margin: 76px 0 168px 0;
+  margin: 76px 0 0 0;
   padding: 0;
+  
+  
+}
+.ul-menu-over {
+ 
 }
 
 .menu-nav ul {
@@ -287,6 +297,20 @@ max-width: 320px;
   margin: 0;
   gap: 40px;
   text-align: start;
+  
+}
+.menu-link.menu-link-active {
+  color: #404bbf;
+
+}
+.menu-phone.menu-link-active {
+    color: #404bbf;
+
+}
+
+.menu-link:hover,
+.menu-link:focus {
+  color: #404bbf;
 }
 
 .menu-link:hover,
@@ -311,6 +335,7 @@ max-width: 320px;
   text-align: start;
   justify-content: center;
   margin-bottom: 48px;
+  margin-top: auto; 
 }
 
 .menu-phone,
@@ -333,10 +358,19 @@ max-width: 320px;
   color: #404bbf;
 }
 
+.menu-social-modal {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  
+}
+
 .menu-social {
   display: flex;
   gap: 24px;
   margin-bottom: 40px;
+    margin-top: auto; /* автоматично займає весь простір між ul і цим блоком */
+
 }
 
 .menu-icon {
@@ -962,6 +996,18 @@ font-family: inherit;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
   background-color: #31d0aa;
 }
+
+/* Мобільна версія до 767px */
+@media screen and (max-width: 767px) {
+  .email-label {
+    width: 288px;       /* ширина самого контейнера */
+    max-width: 288px;   /* обмеження макс. ширини */
+    margin-left: 16px;  /* відступ від краю екрану */
+    margin-right: 16px; /* відступ від краю екрану */
+    padding: 0;         /* прибираємо внутрішні падінги, якщо є */
+  }
+}
+
 /* BACKDROP */
 
 
@@ -1138,17 +1184,26 @@ border-color: #4D5AE5;
 }
 
 .check-block {
-
+margin-top: 16px;
 margin-bottom: 24px;
 }
 
 
 .text-back-form {
+    display: flex;
+
   font-weight: 400;
 font-size: 12px;
 line-height: 1.17;
 letter-spacing: 0.04em;
 color: #8e8f99;
+}
+@media screen and (max-width: 767px) {
+  .privacy-text {
+    width: 231px;
+    height: 31px;
+    
+  }
 }
 
 .highlight {
@@ -1313,7 +1368,6 @@ input:checked + label .custom-checkbox svg {
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
-    padding: 16px 0;
   }
 
   .header-address-links {
@@ -1345,7 +1399,7 @@ input:checked + label .custom-checkbox svg {
       rgba(46, 47, 66, 0.7),
       rgba(46, 47, 66, 0.7)
     ),
-    url("../images/people-office12x.jpg ");
+    url("../images/people-office1tablet2x.jpg ");
 }
 }
 
@@ -1368,10 +1422,14 @@ input:checked + label .custom-checkbox svg {
     flex-basis: calc((100% - 24px) / 2);
   }
 
+
+
   .advantages-item-title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 120%;
+     font-weight: 700;
+font-size: 36px;
+line-height: 1.11111;
+letter-spacing: 0.02em;
+color: #2e2f42;
     text-align: left;
   }
 
@@ -1517,8 +1575,8 @@ input:checked + label .custom-checkbox svg {
     padding-bottom: 188px;
   }
 
-  /* Для десктопів (1158px+) */
- @media screen and (min-width: 1158px) {
+   /* Для десктопів (1158px+) */
+@media screen and (min-width: 1158px) {
   .main-section {
     background-image: linear-gradient(
         rgba(46, 47, 66, 0.7),
@@ -1526,17 +1584,20 @@ input:checked + label .custom-checkbox svg {
       ),
       url("../images/people-office1.jpg");
   }
-} 
+}
 
 /* Для десктопів з високою щільністю (x2) */
- @media screen and (min-width: 1158px) and (min-resolution: 192dpi) {
+@media screen and (min-width: 1158px) and (min-resolution: 192dpi), 
+       screen and (min-width: 1158px) and (-webkit-min-device-pixel-ratio: 2) {
   .main-section {
     background-image: linear-gradient(
         rgba(46, 47, 66, 0.7),
         rgba(46, 47, 66, 0.7)
       ),
       url("../images/people-office1-desktop@2x.jpg");
-  } 
+  }
+}
+
 
   .title-effective-solutions {
     margin-bottom: 48px;
@@ -1559,7 +1620,6 @@ input:checked + label .custom-checkbox svg {
   }
 
   .advantages-list .advantages-item {
-    margin-bottom: 40px;
     flex-basis: calc((100% - 72px) / 4);
   }
 
@@ -1613,11 +1673,10 @@ input:checked + label .custom-checkbox svg {
 
   .footer-social {
     align-items: flex-start;
-    margin-right: auto;
+    margin-right: 80px;
   }
 
   .emeil-footer {
-    margin: 0 0 0 auto;
     padding: 0;
     max-width: 483px;
   }
